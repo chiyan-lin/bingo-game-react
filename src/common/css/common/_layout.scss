@@ -1,0 +1,52 @@
+// 这个一个基于 flex 的布局 css
+// 将 flex 的属性进行拆分，减少 flex 在每个样式中重复写的问题
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.major-start {
+    justify-content: flex-start;
+}
+
+.major-center {
+    justify-content: center;
+}
+
+.major-around {
+    justify-content: space-around;
+}
+
+.major-between {
+    justify-content: space-between;
+}
+
+.major-end {
+    justify-content: flex-end;
+}
+
+.minor-start {
+    align-items: flex-start;
+}
+
+.minor-center {
+    align-items: center;
+}
+
+.minor-around {
+    align-items: space-around;
+}
+
+.minor-between {
+    align-items: space-between;
+}
+
+.minor-end {
+    align-items: flex-end;
+}

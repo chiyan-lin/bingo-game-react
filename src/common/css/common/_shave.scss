@@ -1,0 +1,68 @@
+$triangleAngle: 20px;
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: $triangleAngle solid transparent;
+  border-right: $triangleAngle solid transparent;
+  border-bottom: $triangleAngle solid #007B6C;
+  position: absolute;
+  &::after {
+    position: absolute;
+    top: 4px;
+    left: -$triangleAngle;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: $triangleAngle solid transparent;
+    border-right: $triangleAngle solid transparent;
+    border-bottom: $triangleAngle solid #D5FFE0;
+  }
+}
+
+.coin {
+    background-image: url('~@/shared/img/coin.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 37px;
+    height: 39px;
+    display: inline-block;
+}
+
+
+.yellowBtn {
+	background-image: linear-gradient(90deg,
+		#fff7a7 0%,
+		#fce042 100%),
+	linear-gradient(
+		#fce442,
+		#fce442);
+	background-blend-mode: normal, normal;
+	box-shadow: 0px 4px 0px 0px #007465;
+    border-radius: 20px;
+    text-align: center;
+    color: #bf4c00;
+}
+
+.greGradBg {
+    background-image: linear-gradient(90deg, #daffe4 0%, #b7ffca 100%), linear-gradient(#daffe4, #daffe4);
+    background-blend-mode: normal, normal;
+    box-shadow: 0px 4px 0px 4px #007b6c;
+    border: solid 3px #007b6c;
+    border-radius: 10px;
+}
+
+.greImgdBg {
+    background-image: url('~@/shared/img/bg.png');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #00ab86;
+}
+
+.no-one {
+    text-align: center;
+    color: #fff;
+}
+
+.nowrap {
+    white-space: nowrap;
+}

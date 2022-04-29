@@ -1,0 +1,47 @@
+<template>
+  <div :class="[$style.container, type === 'small' ? [$style.btns, disable && $style.btns_d] : [$style.btn, disable && $style.btn_d]]">
+    <slot />
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    type: String,
+    disable: {}
+  }
+}
+</script>
+
+<style lang="scss" module>
+
+.container {
+  font-size: 32px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0px 5px 0px #007B6C;
+  margin: auto;
+  z-index: 9;
+  position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 87px;
+  line-height: 78px;
+}
+.btns {
+  background-image: url('./img/btns.png');
+  width: 240px;
+  &_d {
+    text-shadow: 0px 5px 0px #000 !important;
+    background-image: url('./img/btns-disable.png') !important;
+  }
+}
+.btn {
+  background-image: url('./img/btn.png');
+  width: 440px;
+  &_d {
+    text-shadow: 0px 5px 0px #000 !important;
+    background-image: url('./img/btn-disable.png') !important;
+  }
+}
+</style>

@@ -1,0 +1,16 @@
+.banner {
+  margin: auto;
+  padding: 25px 25px 0 25px;
+  background-size: 100% 100%;
+  background-image: url('./img/banner.png');
+  background-repeat: no-repeat;
+  width: 720px;
+  height: 495px;
+  position: relative;
+  overflow: hidden;
+}
+
+.title {
+  margin: 40px auto 0;
+  @include bg("title-en", 598px, 280px);
+}

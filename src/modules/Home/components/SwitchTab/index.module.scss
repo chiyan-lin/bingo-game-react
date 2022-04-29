@@ -1,0 +1,35 @@
+.switch {
+  text-align: center;
+  width: 690px;
+  height: 81px;
+  position: absolute;
+  top: -80px;
+  left: -4px;
+  &Item {
+    color: #333;
+    white-space: nowrap;
+    padding: 0 10px;
+    width: 50%;
+    height: 76px;
+    line-height: 76px;
+    text-align: center;
+    color: #00ab86;
+    font-size: 30px;
+    background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(7, 6, 6, 0.15) 100%), linear-gradient(#006659, #006659);
+    background-blend-mode: overlay, normal;
+    border-radius: 30px 30px 0px 0px;
+    margin: 0 20px 5px;
+    &.active {
+      margin: 0;
+      height: 81px;
+      line-height: 81px;
+      background-image: linear-gradient(0deg, #00ab86 0%, #b7ffca 100%), linear-gradient(#00ab86, #00ab86);
+      background-blend-mode: normal, normal;
+      border-radius: 30px 30px 0px 0px;
+      border: solid 4px #daffe4;
+      border-bottom: 0;
+      font-size: 42px;
+      color: #ffff50;
+    }
+  }
+}

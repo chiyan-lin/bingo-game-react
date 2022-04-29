@@ -1,0 +1,38 @@
+html, body {
+  font-family: -apple-system, 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'PingFang SC', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  &.no-scroll {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+
+a {
+  text-decoration: none;
+  max-height: 100%;
+}
+
+p,
+a,
+div,
+section,
+header,
+main,
+footer {
+  box-sizing: border-box;
+  max-height: 99999rem;
+}
+li {
+    list-style: none;
+    padding: 0;
+}
+ul {
+    padding: 0;
+}
+p {
+    margin: 0;
+}

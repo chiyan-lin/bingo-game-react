@@ -1,0 +1,26 @@
+.contianer {
+  // OPPO R7 Plus 兼容性问题
+  position: relative;
+  z-index: 9;
+}
+.lvWrap {
+  width: 560px;
+  height: 150px;
+  margin: 0 auto;
+  overflow: auto;
+  position: relative;
+}
+.lvWrapScroll {
+  width: auto;
+  white-space: nowrap;
+  height: 100%;
+  position: relative;
+}
+
+.tip {
+  width: 442px;
+  color: #fff;
+  margin: 16px auto;
+  min-height: 80px;
+  text-align: center;
+}

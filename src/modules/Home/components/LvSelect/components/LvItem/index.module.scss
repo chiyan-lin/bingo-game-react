@@ -1,0 +1,57 @@
+.container {
+  position: relative;
+  margin: 0 5px;
+  display: inline-block;
+  vertical-align: top;
+}
+.level {
+  width: 110px;
+  height: 110px;
+  background-size: 100% 100%;
+  text-align: center;
+}
+.levelLow {
+  background-image: url('./img/Lv-low.png') !important;
+}
+.levelHigh {
+  background-image: url('./img/Lv-high.png');
+}
+.levelLock {
+  background-image: url('./img/Lv-lock.png');
+}
+
+.star {
+  width: 27px;
+  height: 30px;
+  background-size: 100% 100%;
+  background-image: url('./img/star.png');
+  display: inline-block;
+}
+.star14 {
+  &:nth-child(1) {
+    margin-bottom: 12px;
+  }
+  &:nth-child(4) {
+    margin-bottom: 12px;
+  }
+}
+.starWrap {
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+}
+.starActive {
+  background-image: url('./img/star-active.png') !important;
+}
+.lock {
+  @include bg('lock', 33px, 43px);
+  margin: 0 auto 10px;
+}
+.triangle {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -30px;
+  z-index: 888;
+}
