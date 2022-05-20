@@ -7,7 +7,7 @@ const parser = new Parser({ disableWorker: true });
 
 export type ComponentProps = {
   url: string;
-  isPause: boolean;
+  isPause?: boolean;
   options: object;
   onStart?: Function;
   onProcess?: Function;
