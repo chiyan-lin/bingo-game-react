@@ -4,4 +4,4 @@ dist
 coverage
 dist-ssr
 *.local
-
+_origin

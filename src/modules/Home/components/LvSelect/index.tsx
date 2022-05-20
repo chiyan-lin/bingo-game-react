@@ -34,6 +34,7 @@ import LvItem from './components/LvItem';
 export type LvSelectProps = {
   data: Array<Object>;
   select: number;
+  updateSelect: Function;
 };
 
 function LvSelect(props: LvSelectProps) {
@@ -55,10 +56,10 @@ function LvSelect(props: LvSelectProps) {
       </p>
       <div className={styles.lvWrap}>
         <div className={styles.lvWrapScroll}>
-          {props.data.map((conf: any, idx) => {
+          {props.data?.map((conf: any, idx) => {
             return (
               <LvItem
-                onClick={() => {}}
+                onClick={(val: number) => {props.updateSelect(val)}}
                 select={props.select}
                 limit={conf.limit}
                 lock={conf.lock}

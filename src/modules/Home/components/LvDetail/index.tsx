@@ -9,15 +9,15 @@ export type ComponentProps = {
 };
 
 function Component(props: ComponentProps) {
-  const selectdDate: any = props.data[props.selected.index || 2];
+  const selectdDate: any = props.data[props.selected];
   const coin: any = selectdDate && selectdDate[0];
   const gift: any = selectdDate && selectdDate.slice(1);
   return (
     <div className={styles.container + ' ' + 'greGradBg'}>
       <div className={'row major-center minor-center'}>
         {coin.amount && (
-          <div>
-            <GiftItem data={coin} />
+          <div className="row major-center minor-center">
+            <GiftItem data={[coin]} />
             {gift.length && <span className={styles.plug}>+</span>}
           </div>
         )}

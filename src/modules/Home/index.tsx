@@ -1,5 +1,5 @@
-import React, { FC, useEffect } from 'react';
-import SvgComponent from '@/components/SvgIcon';
+import React, { FC, useEffect, useState } from 'react';
+// import SvgComponent from '@/components/SvgIcon';
 import styles from './index.module.scss';
 import { environmentVariable } from '@/common/utils/env';
 import Banner from './components/Banner';
@@ -115,16 +115,19 @@ const App: FC = () => {
     },
   ];
 
+  const [tab, setTab] = useState(0);
+  const [lv, setLv] = useState(0);
+
   return (
     <div className={styles.container + ' ' + 'col major-starts minor-center'}>
       <Banner></Banner>
       <main className={styles.main + ' ' + 'greImgdBg'}>
-        <SwitchTab value={0}></SwitchTab>
-        <LvSelect data={LvSelectData} select={2}></LvSelect>
+        <SwitchTab value={tab} valueUpdate={setTab}></SwitchTab>
+        <LvSelect data={LvSelectData} select={lv} updateSelect={setLv}></LvSelect>
         <LvDetail
           data={LvSelectData.map((item) => item.rewards)}
           cost={LvSelectData.map((item) => item.coin)}
-          selected={2}
+          selected={lv}
         ></LvDetail>
       </main>
       <h2>Welcome to vite-react-cil</h2>

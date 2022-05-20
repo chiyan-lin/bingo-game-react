@@ -3,6 +3,7 @@ import styles from './index.module.scss';
 
 export type ComponentProps = {
   value: number;
+  valueUpdate: Function
 };
 
 function Banner(props: ComponentProps) {
@@ -14,7 +15,9 @@ function Banner(props: ComponentProps) {
       title: '高级',
     },
   ];
-
+  const clickHandle = (val: number) => {
+    props.valueUpdate(val);
+  }
   return (
     <div className={styles.switch + ' ' + 'row major-center minor-center'}>
       {list.map((item: any, idx) => {
@@ -22,6 +25,7 @@ function Banner(props: ComponentProps) {
           <div
             key={item.title}
             className={(props.value === idx && styles.active) + ' ' + styles.switchItem}
+            onClick={() => clickHandle(idx)}
           >
             {item.title}
           </div>

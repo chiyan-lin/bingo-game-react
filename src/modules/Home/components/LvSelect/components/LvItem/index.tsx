@@ -13,7 +13,7 @@ export type ComponentProps = {
 
 function Component(props: ComponentProps) {
   return (
-    <div onClick={(e) => props.onClick(e)} className={styles.container}>
+    <div onClick={() => props.onClick(props.level)} className={styles.container}>
       <div
         className={
           styles.level +

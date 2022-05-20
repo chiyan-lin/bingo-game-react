@@ -6,7 +6,13 @@ export type ComponentProps = {
 };
 
 function Component(props: ComponentProps) {
-  return <p className={styles.lv + ' ' + styles[`lv${props.level}`] + ' ' + (props.level === 0 && styles.lvTop)}></p>;
+  return (
+    <p
+      className={
+        styles.lv + ' ' + styles[`lv${props.level}`] + ' ' + (props.level === 0 && styles.lvTop)
+      }
+    ></p>
+  );
 }
 
 export default Component;
