@@ -6,6 +6,8 @@ import Banner from './components/Banner';
 import LvSelect from './components/LvSelect';
 import SwitchTab from './components/SwitchTab';
 import LvDetail from './components/LvDetail';
+import MyProperty from './components/MyProperty';
+import Btn from '@/components/Btn';
 
 const App: FC = () => {
   useEffect(() => {
@@ -129,8 +131,10 @@ const App: FC = () => {
           cost={LvSelectData.map((item) => item.coin)}
           selected={lv}
         ></LvDetail>
+        <Btn className={styles.btn}>开始游戏</Btn>
+        <MyProperty data={{ coin: 2 }}></MyProperty>
       </main>
-      <h2>Welcome to vite-react-cil</h2>
+      <h3>Welcome to BingoGame，I make it for Kata</h3>
     </div>
   );
 };

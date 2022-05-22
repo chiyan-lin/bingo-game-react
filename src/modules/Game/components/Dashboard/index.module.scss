@@ -1,0 +1,47 @@
+
+.header {
+  @include bg('header', 720px, 187px);
+  padding: 20px 30px 0px;
+  position: relative;
+}
+.back {
+  @include bg('back', 50px, 50px);
+}
+.score {
+  background-size: 100% 100%;
+  margin-top: -8px;
+  color: #fff;
+  font-size: 30px;
+  text-shadow: 3px 3px #ae6100;
+  text-align: center;
+}
+.diamond {
+  height: 67px;
+  line-height: 67px;
+  background-image: url('./img/score.png');
+  width: 268px;
+  padding-left: 64px;
+  padding-right: 60px;
+}
+.coin {
+  line-height: 62px;
+  height: 62px;
+  background-image: url('./img/coin.png');
+  width: 243px;
+  padding-left: 75px;
+  padding-right: 60px;
+}
+.rule {
+  @include bg('rule', 50px, 50px);
+}
+.lv {
+  width: 109px;
+  height: 52px;
+  @include placeMiddleLeft();
+  bottom: 35px;
+  position: absolute;
+}
+.lv0 {
+  width: 209px !important;
+  height: 48px !important;
+}

@@ -1,6 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+/*
+ * @Author: your name
+ * @Date: 2022-05-21 10:16:08
+ * @LastEditTime: 2022-05-22 10:36:53
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /bingo-game-react/src/common/lib/svga/index.tsx
+ */
+import React, { useEffect, useRef } from 'react';
 import { Player, Downloader, Parser } from 'svga.lite';
-import { addPlayer, autoPause, isWebViewPause } from './utils';
+// @ts-ignore
+import { addPlayer, autoPause } from './utils.js';
 const downloader = new Downloader();
 // @ts-ignore
 const parser = new Parser({ disableWorker: true });
@@ -13,61 +22,62 @@ export type ComponentProps = {
   onProcess?: Function;
   onPause?: Function;
   onEnd?: Function;
+  className?: string;
 };
 
 function Component(props: ComponentProps) {
-  const [player, setPlayer] = useState(null);
+  let player: any = null;
   const canvasRef = useRef(null);
   // let player: any = null;
 
-  async function parseSvga(url: string) {
+  async function parseSvga(dom: any) {
+    console.log('dm', dom);
     try {
-      const fileData = await downloader.get(url);
-      const svgaData = await parser.do(fileData);
       if (!player) {
-        setPlayer(new Player(canvasRef.current as any) as any);
+        const fileData = await downloader.get(props.url);
+        const svgaData = await parser.do(fileData);
+        player = new Player(dom) as any;
         autoPause && addPlayer(player);
-        eventListen();
+        eventListen(player);
+        (player as any).set(props.options);
+        await (player as any).mount(svgaData);
       }
-      (player as any).set(props.options);
-      await (player as any).mount(svgaData);
-      if ((autoPause && isWebViewPause) || props.isPause) return;
-      (player as any).start()(player as any).tmpStatus = true;
+      (player as any).start();
+      // setPlayer(player);
+      // if ((autoPause && isWebViewPause) || props.isPause) return;
+      // (player as any).start()(player as any).tmpStatus = true;
     } catch (error) {
       console.log(error);
     }
   }
 
-  function eventListen() {
-    (player as any)
-      .$on('start', () => {
-        props.onStart && props.onStart();
-      })(player as any)
-      .$on('process', () => {
-        props.onProcess && props.onProcess((player as any).progres);
-      })(player as any)
-      .$on('pause', () => {
-        props.onPause && props.onPause();
-      })(player as any)
-      .$on('end', () => {
-        (player as any).tmpStatus = false;
-        props.onEnd && props.onEnd();
-      });
+  function eventListen(player: any) {
+    player.$on('start', () => {
+      props.onStart && props.onStart();
+    });
+    player.$on('process', () => {
+      props.onProcess && props.onProcess((player as any).progres);
+    });
+    player.$on('pause', () => {
+      props.onPause && props.onPause();
+    });
+    player.$on('end', () => {
+      (player as any).tmpStatus = false;
+      console.log('end');
+      props.onEnd && props.onEnd();
+    });
   }
 
+  // 在 canvas 挂载的时候执行
   useEffect(() => {
-    if (player) {
-      parseSvga(player as any);
-    } else {
-      (player as any).clear();
-    }
+    parseSvga(canvasRef.current as any);
     return () => {
-      (player as any).destroy()(player as any) && (player as any).destroy();
+      (player as any)?.clear();
+      (player as any)?.destroy();
     };
   });
 
-  parseSvga(props.url);
-  return <canvas ref={canvasRef}></canvas>;
+  return <canvas className={props.className} ref={canvasRef}></canvas>;
 }
 
 export default Component;

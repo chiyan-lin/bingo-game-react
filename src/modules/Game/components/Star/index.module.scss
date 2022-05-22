@@ -1,0 +1,54 @@
+
+.star {
+  width: 100%;
+  position: relative;
+  div {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+}
+.star1 {
+  div {
+    width: 78px;
+    height: 78px;
+    &:first-child {
+      margin-top: 15px;
+    }
+    &:last-child {
+      margin-top: 15px;
+    }
+  }
+}
+.star2 {
+  div {
+    width: 59px;
+    height: 59px;
+    margin: 0 5px;
+  }
+}
+.star2 .active {
+  background-image: url('./img/star-2.png') !important;
+}
+.star2 .disable {
+  background-image: url('./img/star-22.png');
+}
+.star1 .active {
+  background-image: url('./img/star-1.png') !important;
+}
+.star1 .disable {
+  background-image: url('./img/star-11.png');
+}
+
+.que {
+  width: 30px;
+  height: 30px;
+}
+
+.tip {
+  color: #fefefe;
+  width: 70%;
+  margin: 20px auto 0;
+  height: 40px;
+  text-align: center;
+  line-height: 1.5;
+}

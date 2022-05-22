@@ -1,0 +1,131 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+.ct2 {
+  margin-top: 150px;
+}
+.ct3 {
+  margin-top: 120px;
+}
+.ct4 {
+  margin-top: 140px;
+}
+.ct5 {
+  margin-top: 90px;
+}
+$gameitemmargin: 5px;
+.flop {
+  margin: 0 auto;
+  position: relative;
+  div {
+    width: 100%;
+    height: 100%;
+  }
+}
+.flop2 {
+  width: 510px + $gameitemmargin;
+  height: 510px + $gameitemmargin;
+}
+.block2 {
+  width: 224px !important;
+  height: 245px !important;
+}
+.flop3 {
+  width: 550px + $gameitemmargin;
+  height: 550px + $gameitemmargin;
+}
+.block3 {
+  width: 157px !important;
+  height: 175px !important;
+}
+.flop4 {
+  width: 510px + $gameitemmargin;
+  height: 510px + $gameitemmargin;
+}
+.block4 {
+  width: 112px !important;
+  height: 119px !important;
+}
+.flop5 {
+  width: 620px + $gameitemmargin;
+  height: 620px + $gameitemmargin;
+}
+.block5 {
+  width: 112px !important;
+  height: 119px !important;
+}
+.row {
+  margin: $gameitemmargin 0;
+}
+.cardHidden {
+  opacity: 0;
+  transition: 1.5s 0.5s opacity ease;
+}
+.col {
+  flex: 1;
+  text-align: center;
+  margin: 0 $gameitemmargin;
+  &Iteme {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  &Itemf {
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    &0 {
+      background-image: url('./img/common/select.png');
+    }
+    &1 {
+      background-image: url('./img/ad/select.png');
+    }
+  }
+  &Itemb {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    @for $i from 1 through 10 {
+      &#{$i} {
+        background-image: url('./img/' + $i + '.png');
+      }
+    }
+  }
+  &Status0 {
+    &0 {
+      background-image: url('./img/common/front.png');
+    }
+    &1 {
+      background-image: url('./img/ad/front.png');
+    }
+  }
+  &Status1 {
+    &0 {
+      background-image: url('./img/common/select.png');
+    }
+    &1 {
+      background-image: url('./img/ad/select.png');
+    }
+  }
+  &Status2 {
+    &0 {
+      background-image: url('./img/common/bottom.png');
+    }
+    &1 {
+      background-image: url('./img/ad/bottom.png');
+    }
+  }
+  &Empty {
+    &0 {
+      background-image: url('./img/common/placeholder.png');
+    }
+    &1 {
+      background-image: url('./img/ad/placeholder.png');
+    }
+  }
+}

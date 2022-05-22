@@ -17,6 +17,7 @@
     "postcss-plugin-px2rem": "^0.8.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-router-dom": "^6.3.0",
     "reactcss": "^1.2.3",
     "svga.lite": "^1.6.1"
   },

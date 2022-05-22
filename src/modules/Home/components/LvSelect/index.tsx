@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2022-05-21 10:16:08
+ * @LastEditTime: 2022-05-22 10:45:55
+ * @LastEditors: your name
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /bingo-game-react/src/modules/Home/components/LvSelect/index.tsx
+ */
 import React from 'react';
 // import reactCSS from 'reactcss';
 import styles from './index.module.scss';
@@ -59,7 +67,9 @@ function LvSelect(props: LvSelectProps) {
           {props.data?.map((conf: any, idx) => {
             return (
               <LvItem
-                onClick={(val: number) => {props.updateSelect(val)}}
+                onClick={(val: number) => {
+                  props.updateSelect(val);
+                }}
                 select={props.select}
                 limit={conf.limit}
                 lock={conf.lock}

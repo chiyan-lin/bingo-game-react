@@ -8,13 +8,8 @@
   z-index: 9;
 }
 .home {
-  bottom: 0;
-  left: -150px;
-  &:lang(ar) {
-    left: 0;
-    right: -150px;
-    transform: rotateY(180deg);
-  }
+  bottom: 5px;
+  left: -38px;
 }
 .game {
   top: 0;

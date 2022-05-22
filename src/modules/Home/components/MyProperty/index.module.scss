@@ -1,0 +1,24 @@
+.container {
+  color: #fff;
+  padding: 0 24px;
+  margin: 20px auto;
+  span {
+    color: #ffff50;
+  }
+  > div {
+    white-space: nowrap;
+  }
+}
+.btn {
+  width: 121px;
+  height: 40px;
+  line-height: 40px;
+}
+.time {
+  margin-top: 10px;
+}
+.ticket {
+  background-image: url('./img/ticket.png');
+  width: 55px;
+  height: 31px;
+}

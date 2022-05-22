@@ -12,6 +12,8 @@
   border: solid 4px #daffe4;
   position: relative;
   margin-top: -90px;
+  border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
   &0 {
     border-radius: 0px 30px 30px 30px;
     &:lang(ar) {
@@ -27,7 +29,7 @@
   }
 }
 .btn {
-  margin-top: -55px;
+  margin: 30px auto 30px !important;
 }
 .rank {
   width: 100px;
