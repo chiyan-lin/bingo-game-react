@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './index.module.scss';
 import Turnover from './components/Turnover';
 
@@ -7,12 +7,31 @@ export type ComponentProps = {
   gameData: any[];
   children?: any;
   type: number;
+  setGameData: Function;
 };
 
 function Component(props: ComponentProps) {
-  const onClickCard = (a, b) => {
-    console.log(a, b);
+  const onClickCard = (row: number, col: number) => {
+    // setGameData
+    console.log('onClick', row, col)
+    // const data = JSON.parse(JSON.stringify(props.gameData))
+    // data[row][col] = {
+    //   isMatch: false,
+    //   status: 1,
+    //   index: 1,
+    // }
+    // console.log('data', data)
+    props.setGameData((data: any) => {
+      data[row][col] = {
+        isMatch: false,
+        status: 1,
+        index: 1,
+      }
+    });
   };
+  useEffect(() => {
+    console.log('>>>>>>')
+  })
   return (
     <div className={[styles.container, styles[`ct${props.limit}`]].join(' ')}>
       <div
@@ -29,9 +48,8 @@ function Component(props: ComponentProps) {
                 return (
                   <div
                     className={[styles.col, styles[`block${props.limit}`]].join(' ')}
-                    key={colIdx}
+                    key={colIdx + '-' + rowId + '-' + colItem.status}
                   >
-                    {/* eslint-disable-next-line */}
                     <div
                       className={[
                         colItem.isMatch && styles.cardHidden,
