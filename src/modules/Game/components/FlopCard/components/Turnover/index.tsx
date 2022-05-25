@@ -10,7 +10,6 @@ export type ComponentProps = {
 };
 
 function Component(props: ComponentProps) {
-  console.log(props);
   const [showBiling, setBiling] = useState(false);
   const [showTurn, setShowTurn] = useState(false);
   const init = () => {

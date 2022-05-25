@@ -20,7 +20,6 @@ export type ComponentProps = {
 };
 
 function Component(props: ComponentProps) {
-  console.log(props);
   return (
     <div className={['row major-between minor-start', styles.header].join(' ')}>
       {/* eslint-disable-next-line */}

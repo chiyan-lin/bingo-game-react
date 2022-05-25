@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useImmer } from "use-immer";
+import { useImmer } from 'use-immer';
 import styles from './index.module.scss';
 
 import Dashborad from './components/Dashboard';
@@ -10,16 +10,15 @@ import Reward from './components/Reward';
 export type ComponentProps = {};
 
 function Component(props: ComponentProps) {
-  const setItem = () => ({
-    isMatch: false,
-    status: 0,
-    index: 1,
+  const setItem = (status = 0) => ({
+    status: status,
+    value: 0,
   });
   const [gameData, setGameData] = useImmer([
     [setItem(), setItem(), setItem()],
+    [setItem(), setItem(-1), setItem()],
     [setItem(), setItem(), setItem()],
-    [setItem(), setItem(), setItem()],
-  ])
+  ]);
   return (
     <main className={[styles.game, styles.gameAdvance].join(' ')}>
       <Dashborad lv={2} ticket={2} coin={5} onBack={() => {}} onReset={() => {}}></Dashborad>

@@ -7,9 +7,4 @@ import '@/common/css/common/_shave.scss';
 // import Home from '@/modules/Home';
 import Game from '@/modules/Game';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Game />
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+ReactDOM.render(<Game />, document.getElementById('root'));

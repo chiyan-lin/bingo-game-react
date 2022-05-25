@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './index.module.scss';
 import Turnover from './components/Turnover';
+import { isShowTurnover, statusMap, disableClickCard } from './util';
 
 export type ComponentProps = {
   limit: number;
@@ -9,29 +10,65 @@ export type ComponentProps = {
   type: number;
   setGameData: Function;
 };
+interface FlopCardCache {
+  row: number;
+  col: number;
+  status: number;
+  value: number;
+}
+
+let flopCardCache: FlopCardCache | null = null;
 
 function Component(props: ComponentProps) {
   const onClickCard = (row: number, col: number) => {
     // setGameData
-    console.log('onClick', row, col)
-    // const data = JSON.parse(JSON.stringify(props.gameData))
-    // data[row][col] = {
-    //   isMatch: false,
-    //   status: 1,
-    //   index: 1,
-    // }
-    // console.log('data', data)
+    console.log('onClick', row, col);
+    const clickStatus = props.gameData[row][col].status;
+    console.log('statusMap', statusMap.CLOSE, statusMap.OPEN, 'clickStatus', clickStatus);
+    if (disableClickCard(clickStatus)) return;
+    console.log('clickStatus', clickStatus);
     props.setGameData((data: any) => {
-      data[row][col] = {
-        isMatch: false,
-        status: 1,
-        index: 1,
+      const { status, value } = data[row][col];
+      // 如果当前有 value ，翻一次不扣币
+      // 如果当前 status 为 1 再点一次 status 为 0
+      if (status === statusMap.OPEN) {
+        data[row][col].status = statusMap.CLOSE;
+        flopCardCache = null;
+        return;
+      }
+      console.log('the flopCardCache', flopCardCache);
+      // 如果当前是 0 而且没缓存
+      if (status === statusMap.CLOSE && !flopCardCache) {
+        console.log('wocao');
+        data[row][col].status = statusMap.OPEN;
+        flopCardCache = {
+          row,
+          col,
+          status,
+          value,
+        };
+        return;
+      }
+      // 如果当前是 0 有缓存
+      if (status === statusMap.CLOSE && flopCardCache) {
+        data[row][col].status = statusMap.OPEN;
+        setTimeout(() => {
+          props.setGameData((data: any) => {
+            data[row][col].status = statusMap.MATCHED;
+            data[row][col].value = 2;
+            const cache =
+              data[(flopCardCache as FlopCardCache)?.row][(flopCardCache as FlopCardCache)?.col];
+            cache.status = statusMap.MATCHED;
+            cache.value = 2;
+            flopCardCache = null;
+          });
+        }, 666);
       }
     });
   };
-  useEffect(() => {
-    console.log('>>>>>>')
-  })
+  // useEffect(() => {
+  //   console.log('>>>>>>')
+  // })
   return (
     <div className={[styles.container, styles[`ct${props.limit}`]].join(' ')}>
       <div
@@ -52,16 +89,15 @@ function Component(props: ComponentProps) {
                   >
                     <div
                       className={[
-                        colItem.isMatch && styles.cardHidden,
+                        // colItem.status === 2 && styles.cardHidden,
                         styles.colIteme,
                         styles[`colStatus${colItem.status}${props.type}`],
-                        colItem.index === false && styles[`colEmpty${props.type}`],
                       ].join(' ')}
                       onClick={() => onClickCard(rowId, colIdx)}
                     >
-                      {colItem.status === 2 && (
+                      {isShowTurnover(colItem.status) && (
                         <Turnover
-                          isMatch={colItem.isMatch}
+                          isMatch={colItem.status === statusMap.MATCHED}
                           frontChild={
                             <div
                               className={[styles.colItemf, styles[`colItemf${props.type}`]].join(
@@ -71,7 +107,7 @@ function Component(props: ComponentProps) {
                           }
                           backChild={
                             <div
-                              className={[styles.colItemb, styles[`colItemb${props.type}`]].join(
+                              className={[styles.colItemb, styles[`colItemb${colItem.value}`]].join(
                                 ' ',
                               )}
                             ></div>

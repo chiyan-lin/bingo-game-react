@@ -31,7 +31,6 @@ function Component(props: ComponentProps) {
   // let player: any = null;
 
   async function parseSvga(dom: any) {
-    console.log('dm', dom);
     try {
       if (!player) {
         const fileData = await downloader.get(props.url);
@@ -63,7 +62,6 @@ function Component(props: ComponentProps) {
     });
     player.$on('end', () => {
       (player as any).tmpStatus = false;
-      console.log('end');
       props.onEnd && props.onEnd();
     });
   }

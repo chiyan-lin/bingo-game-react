@@ -6,12 +6,12 @@ export type ComponentProps = {
 };
 
 function Component(props: ComponentProps) {
-  console.log(props);
   return (
     <div className={['row major-center minor-start', styles.container].join(' ')}>
       {props.gift.map((item, idx) => {
         return (
           <div
+            key={idx}
             className={[
               styles.item,
               // type === 'red' ? styles.red : styles.green,

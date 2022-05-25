@@ -19,7 +19,6 @@ function Component(props: ComponentProps) {
   const [coin, setCoin] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const addCoin = () => {
-    console.log('.....');
     setCoin(10);
   };
 

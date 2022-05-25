@@ -11,7 +11,6 @@ export type ComponentProps = {
 };
 
 function Component(props: ComponentProps) {
-  console.log(props);
   return (
     <div>
       <div
@@ -22,7 +21,6 @@ function Component(props: ComponentProps) {
         ].join(' ')}
       >
         {new Array(props.limit).fill(0).map((_, i) => {
-          console.log(9999);
           return (
             <div
               key={i}
