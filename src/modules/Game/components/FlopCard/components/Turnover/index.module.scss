@@ -15,6 +15,9 @@
   &__active {
     transform: rotateY(180deg);
   }
+  // &__hidden {
+  //   opacity: 0;
+  // }
   &__face {
     position: absolute;
     width: 100%;

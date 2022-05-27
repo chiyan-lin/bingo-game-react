@@ -3,11 +3,12 @@ import styles from './index.module.scss';
 
 export type ComponentProps = {
   gift: object[];
+  className?: string;
 };
 
 function Component(props: ComponentProps) {
   return (
-    <div className={['row major-center minor-start', styles.container].join(' ')}>
+    <div className={['row major-center minor-start', styles.container, props.className].join(' ')}>
       {props.gift.map((item, idx) => {
         return (
           <div

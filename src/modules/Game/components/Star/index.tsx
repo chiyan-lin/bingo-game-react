@@ -8,11 +8,12 @@ export type ComponentProps = {
   type: number;
   // showTip: boolean;
   lv: number;
+  className?: string;
 };
 
 function Component(props: ComponentProps) {
   return (
-    <div>
+    <div className={props.className}>
       <div
         className={[
           props.type === 1 ? styles.star1 : styles.star2,

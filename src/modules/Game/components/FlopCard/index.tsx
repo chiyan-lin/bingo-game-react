@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './index.module.scss';
 import Turnover from './components/Turnover';
-import { isShowTurnover, statusMap, disableClickCard } from './util';
+import { isShowTurnover, statusMap, disableClickCard } from '../../common/interface';
 
 export type ComponentProps = {
   limit: number;
@@ -22,11 +22,11 @@ let flopCardCache: FlopCardCache | null = null;
 function Component(props: ComponentProps) {
   const onClickCard = (row: number, col: number) => {
     // setGameData
-    console.log('onClick', row, col);
+    // console.log('onClick', row, col);
     const clickStatus = props.gameData[row][col].status;
-    console.log('statusMap', statusMap.CLOSE, statusMap.OPEN, 'clickStatus', clickStatus);
+    // console.log('statusMap', statusMap.CLOSE, statusMap.OPEN, 'clickStatus', clickStatus);
     if (disableClickCard(clickStatus)) return;
-    console.log('clickStatus', clickStatus);
+    // console.log('clickStatus', clickStatus);
     props.setGameData((data: any) => {
       const { status, value } = data[row][col];
       // 如果当前有 value ，翻一次不扣币
@@ -36,10 +36,10 @@ function Component(props: ComponentProps) {
         flopCardCache = null;
         return;
       }
-      console.log('the flopCardCache', flopCardCache);
+      // console.log('the flopCardCache', flopCardCache);
       // 如果当前是 0 而且没缓存
       if (status === statusMap.CLOSE && !flopCardCache) {
-        console.log('wocao');
+        // console.log('wocao');
         data[row][col].status = statusMap.OPEN;
         flopCardCache = {
           row,
@@ -52,23 +52,39 @@ function Component(props: ComponentProps) {
       // 如果当前是 0 有缓存
       if (status === statusMap.CLOSE && flopCardCache) {
         data[row][col].status = statusMap.OPEN;
-        setTimeout(() => {
-          props.setGameData((data: any) => {
-            data[row][col].status = statusMap.MATCHED;
-            data[row][col].value = 2;
-            const cache =
-              data[(flopCardCache as FlopCardCache)?.row][(flopCardCache as FlopCardCache)?.col];
-            cache.status = statusMap.MATCHED;
-            cache.value = 2;
-            flopCardCache = null;
-          });
-        }, 666);
+        // 同一个 value 的牌
+        if (data[row][col].value === flopCardCache.value) {
+          setTimeout(() => {
+            props.setGameData((data: any) => {
+              data[row][col].status = statusMap.MATCHED;
+              data[(flopCardCache as FlopCardCache)?.row][
+                (flopCardCache as FlopCardCache)?.col
+              ].status = statusMap.MATCHED;
+              flopCardCache = null;
+            });
+          }, 666);
+        } else {
+          setTimeout(() => {
+            props.setGameData((data: any) => {
+              data[row][col].status = statusMap.TURNOVER;
+              data[(flopCardCache as FlopCardCache)?.row][
+                (flopCardCache as FlopCardCache)?.col
+              ].status = statusMap.TURNOVER;
+              setTimeout(() => {
+                props.setGameData((data: any) => {
+                  data[row][col].status = statusMap.CLOSE;
+                  data[(flopCardCache as FlopCardCache)?.row][
+                    (flopCardCache as FlopCardCache)?.col
+                  ].status = statusMap.CLOSE;
+                  flopCardCache = null;
+                });
+              }, 1345);
+            });
+          }, 666);
+        }
       }
     });
   };
-  // useEffect(() => {
-  //   console.log('>>>>>>')
-  // })
   return (
     <div className={[styles.container, styles[`ct${props.limit}`]].join(' ')}>
       <div

@@ -10,9 +10,9 @@ import MyProperty from './components/MyProperty';
 import Btn from '@/components/Btn';
 
 const App: FC = () => {
-  useEffect(() => {
-    console.log(`environmentVariable()`, environmentVariable());
-  }, []);
+  // useEffect(() => {
+  //   console.log(`environmentVariable()`, environmentVariable());
+  // }, []);
 
   const LvSelectData = [
     {

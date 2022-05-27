@@ -26,6 +26,12 @@ function Component(props: ComponentProps) {
         clearTimeout(timer2);
         timer2 = null;
       }, 500);
+    } else {
+      timer2 = setTimeout(() => {
+        setShowTurn(false);
+        clearTimeout(timer2);
+        timer2 = null;
+      }, 888);
     }
   };
   useEffect(() => {
