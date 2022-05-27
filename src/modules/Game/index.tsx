@@ -8,7 +8,7 @@ import FlopCard from './components/FlopCard';
 import Reward from './components/Reward';
 import { getCheckBoard } from './common/config'
 import { statusMap } from './common/interface'
-
+import Win from './components/Win'
 export type ComponentProps = {};
 
 function Component(props: ComponentProps) {
@@ -17,6 +17,7 @@ function Component(props: ComponentProps) {
   //   value: 0,
   // });
   const [gameData, setGameData] = useImmer(getCheckBoard(3, 3));
+  const [isWin, setWin] = useState(false)
   useEffect(() => {
     const isDone = gameData.every(row => {
       return row.every(item => {
@@ -31,6 +32,7 @@ function Component(props: ComponentProps) {
       <Star limit={5} type={2} lv={2} star={2}></Star>
       <FlopCard type={1} limit={3} gameData={gameData} setGameData={setGameData}></FlopCard>
       <Reward gift={[{}, {}, {}]}></Reward>
+      {isWin && <Win ></Win>}
     </main>
   );
 }
