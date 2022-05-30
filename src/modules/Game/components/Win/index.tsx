@@ -8,7 +8,7 @@ export type ComponentProps = {
   reward: object[];
   star: number;
 };
-
+// ？？？？
 function Component(props: ComponentProps) {
   console.log(props);
   return (
